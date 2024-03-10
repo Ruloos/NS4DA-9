@@ -19,12 +19,6 @@ e2 = list(G.nodes())[14:G.number_of_nodes()]
 se1 = G.subgraph(e1)
 se2 = G.subgraph(e2)
 
-# Imprimir información básica sobre el grafo
-# plt.figure()
-# nx.draw(G, with_labels=True, node_color='skyblue', node_size=500, font_size=10)
-# plt.figure()
-# nx.draw(se2, with_labels=True, node_color='skyblue', node_size=500, font_size=10)
-
 # preliminary results
 # Equipo 1
 print ("+ + + + + + + + + + + + + + +")
@@ -103,9 +97,9 @@ Pagerank = nx.pagerank(se1)
 betweenness = nx.betweenness_centrality(se1)
 data = []
 for node in se1.nodes():
-     data.append([node,Closeness[node],Pagerank[node],betweenness[node]])
+     data.append([node,Closeness[node],100*Pagerank[node],betweenness[node]])
 data_sorted = sorted(data,key=lambda x: x[0])
-headers = ["Nodo", "Closeness Centrality", "PageRank","Betweenness"]
+headers = ["Nodo", "Closeness Centrality", "PageRank %","Betweenness"]
 print(tabulate(data_sorted, headers=headers, tablefmt="grid"))
 
 pos = nx.spring_layout(se1)
@@ -126,30 +120,10 @@ Pagerank = nx.pagerank(se2)
 betweenness = nx.betweenness_centrality(se2)
 data = []
 for node in se2.nodes():
-     data.append([node,Closeness[node],Pagerank[node],betweenness[node]])
+     data.append([node,Closeness[node],100*Pagerank[node],betweenness[node]])
 data_sorted = sorted(data,key=lambda x: x[0])
-headers = ["Nodo", "Closeness Centrality", "PageRank","Betweenness"]
+headers = ["Nodo", "Closeness Centrality", "PageRank %","Betweenness"]
 print(tabulate(data_sorted, headers=headers, tablefmt="grid"))
-
-
-# for i, valor in Closeness.items(): 
-#     print(f"Node {i} | {valor}")
-#     print ("- - - - - - - - - - - - - - -")
-# print ("- - - - - - - - - - - - - - -")
-# print("Node    | Pagerank ")
-# print ("- - - - - - - - - - - - - - -")
-
-# for i, valor in Pagerank.items(): 
-#     print(f"Node {i}  | {valor}")
-#     print ("- - - - - - - - - - - - - - -")
-
-# print ("- - - - - - - - - - - - - - -")
-# print("Node    | Betweenness ")
-# print ("- - - - - - - - - - - - - - -")
-
-# for i, valor in betweenness.items():
-#     print(f"Node {i} | {valor}")
-#     print ("- - - - - - - - - - - - - - -")
 
 
 pos = nx.spring_layout(se2)
